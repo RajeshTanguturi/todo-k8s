@@ -21,14 +21,3 @@ This repo shows:
 - minikube
 - kubectl
 
-## Placeholders you must replace
-- `DOCKERHUB_USERNAME` — replace with your Docker Hub username when building/tagging/pushing
-
-## Local workflow commands (high-level)
-1. Build images (local): `docker build -t DOCKERHUB_USERNAME/todo-backend:0.1 ./backend`
-2. Push images: `docker push DOCKERHUB_USERNAME/todo-backend:0.1`
-3. Start minikube: `minikube start`
-4. Apply k8s manifests: `kubectl apply -f k8s/`
-5. Access the frontend (Minikube IP or port-forward)
-
-See the sections below for exact commands and details.
