@@ -1,0 +1,9 @@
+# ConfigMap: non-sensitive configuration.
+# Put values here that are safe to show in plaintext (e.g., API URLs, feature flags).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-config
+  namespace: todo-app
+data:
+  VITE_API_BASE: "http://todo-backend:4000"

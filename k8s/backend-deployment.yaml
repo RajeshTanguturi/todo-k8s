@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend
+  namespace: todo-app
+spec:
+  selector:
+    matchLabels:
+      app: todo-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: todo-backend
+    spec:
+      containers:
+        - name: todo-backend
+          image: rajeshtanguturi/todo-backend:0.1
+          ports:
+            - containerPort: 4000
+          env:
+            - name: MONGO_URI
+              value: "mongodb://mongoUser:mongoPass@mongo:27017/todosdb?authSource=admin"
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: todo-secret
+                  key: mongo-user
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: todo-secret
+                  key: mongo-password
+            - name: PORT
+              value: "4000"
