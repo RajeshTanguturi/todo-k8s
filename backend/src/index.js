@@ -10,7 +10,17 @@ app.use(express.json());
 
 // Environment defaults
 const PORT = process.env.PORT || 4000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://mongo:27017/todosdb';
+const MONGO_USER = process.env.MONGO_USER;
+const MONGO_PASS = process.env.MONGO_PASS;
+let MONGO_URI = process.env.MONGO_URI || 'mongodb://mongo:27017/todosdb';
+
+if (MONGO_USER && MONGO_PASS) {
+  if (MONGO_URI.includes('$(MONGO_USER)') || MONGO_URI.includes('$(MONGO_PASS)')) {
+    MONGO_URI = MONGO_URI
+      .replace('$(MONGO_USER)', MONGO_USER)
+      .replace('$(MONGO_PASS)', MONGO_PASS);
+  }
+}
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI, {

@@ -6,4 +6,4 @@ metadata:
   name: todo-config
   namespace: todo-app
 data:
-  VITE_API_BASE: "http://todo-backend:4000"
+  VITE_API_BASE: ""

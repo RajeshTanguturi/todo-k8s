@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo-frontend
-          image: rajeshtanguturi/todo-frontend:0.1
+          image: todo-frontend:0.1
           ports:
             - containerPort: 80
           env:

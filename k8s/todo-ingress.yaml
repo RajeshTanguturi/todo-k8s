@@ -3,11 +3,21 @@ kind: Ingress
 metadata:
   name: todo-ingress
   namespace: todo-app
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   rules:
   - host: todo.local
     http:
       paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: todo-backend
+            port:
+              number: 4000
       - path: /
         pathType: Prefix
         backend:
